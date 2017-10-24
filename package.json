@@ -1,0 +1,24 @@
+{
+  "name": "l7",
+  "version": "0.0.1",
+  "description": "LZW compression codec implementation in Javascript",
+  "main": "main.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanmacleod/L7.git"
+  },
+  "keywords": [
+    "lzw",
+    "compression",
+    "lossless"
+  ],
+  "author": "Alan MacLeod",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alanmacleod/L7/issues"
+  },
+  "homepage": "https://github.com/alanmacleod/L7#readme"
+}
