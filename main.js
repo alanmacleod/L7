@@ -38,8 +38,28 @@ L7.prototype = {
     this.reset();
 
     var data = new Uint8Array(buffer);
-    console.log(this.dict);
+    var w = '', res = [];
+    var dsize = 256;
 
+    for (var t=0; t<data.length; t++)
+    {
+      var c = String.fromCharCode(data[t]);
+
+      var wc = w + c;
+      if (this.dict.hasOwnProperty(wc))
+      {
+        w = wc;
+      } else {
+        res.push(this.dict[w]);
+        this.dict[wc] = dsize++;
+        w = String(c);
+      }
+    }
+
+    if (w != "")
+      res.push(this.dict[w]);
+
+    return res;
 
   },
 
