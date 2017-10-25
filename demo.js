@@ -1,12 +1,13 @@
 
 var L7 = require('./main.js');
 
-var c = new L7();
-
-
 var buff = "TOBEORNOTTOBEORTOBEORNOT";
 
 console.log(buff.length + ": " + buff);
-var r = c.compress(buff);
+var c = L7.compress(buff);
 
-console.log(r.length,  ": ", r)
+console.log(c.length,  ": ", c)
+
+var d = L7.decompress(c);
+
+console.log(d.length,  ": ", d)

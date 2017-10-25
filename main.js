@@ -3,10 +3,7 @@
 
 "pretend that we're dead";
 
-
-module.exports = L7;
 const MAX_BASE = 256;
-
 
 function L7()
 {
@@ -17,13 +14,16 @@ function L7()
 
 L7.prototype = {
 
-  reset: function()
+  reset: function(forCompress)
   {
     this.dict = [];
 
-    for(var t=0; t<this.basecount; t++)
-      this.dict[String.fromCharCode(t)] = t;
-
+    if (forCompress)
+      for(var t=0; t<this.basecount; t++)
+        this.dict[String.fromCharCode(t)] = t;
+    else
+      for(var t=0; t<this.basecount; t++)
+        this.dict[t] = String.fromCharCode(t);
 
   },
 
@@ -35,7 +35,7 @@ L7.prototype = {
     if (typeof buffer == 'string')
       buffer = this._to_ab(buffer);
 
-    this.reset();
+    this.reset(true);
 
     var data = new Uint8Array(buffer);
     var w = '', res = [];
@@ -63,6 +63,39 @@ L7.prototype = {
 
   },
 
+
+  decompress: function(buffer)
+  {
+    this.reset(false);
+
+    var w = String.fromCharCode(buffer[0]);
+    var res = w, dsize=256, e, k;
+
+    for (var i=1; i<buffer.length; i++)
+    {
+
+      k = buffer[i];
+
+      if (this.dict[k])
+      {
+        e = this.dict[k];
+      } else {
+        if (k === dsize)
+          e = w + w.charAt(0);
+        else
+          return null;
+      }
+
+      res += e;
+
+      this.dict[dsize++] = w + e.charAt(0);
+
+      w = e;
+    }
+
+    return res;
+  },
+
   _to_ab: function(str)
   {
     var buf = new ArrayBuffer(str.length); // 2 bytes for each char
@@ -74,3 +107,6 @@ L7.prototype = {
   }
 
 };
+
+
+module.exports = new L7();
