@@ -24,7 +24,6 @@ L7.prototype = {
     else
       for(var t=0; t<this.basecount; t++)
         this.dict[t] = String.fromCharCode(t);
-
   },
 
   // One of LZW's strengths is operating on a continuous input stream of
@@ -63,7 +62,6 @@ L7.prototype = {
 
   },
 
-
   decompress: function(buffer)
   {
     this.reset(false);
@@ -73,7 +71,6 @@ L7.prototype = {
 
     for (var i=1; i<buffer.length; i++)
     {
-
       k = buffer[i];
 
       if (this.dict[k])
