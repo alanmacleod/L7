@@ -1,9 +1,9 @@
 
 "use strict";
 
-"pretend that we're dead";
-
 const MAX_BASE = 256;
+
+
 
 function L7()
 {
