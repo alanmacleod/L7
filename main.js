@@ -3,7 +3,7 @@
 
 const MAX_BASE = 256;
 
-
+// work in variable length base dict
 
 function L7()
 {
