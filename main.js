@@ -45,10 +45,16 @@ L7.prototype = {
       var c = String.fromCharCode(data[t]);
 
       var wc = w + c;
+
+      // if it exists in the dictionary already
       if (this.dict.hasOwnProperty(wc))
       {
+        // Use it as an output code
         w = wc;
       } else {
+        // Else, output the existing code and add this new one
+        // to the dict (do it weirdly like this so the dict can be
+        // reconstructed during decompression)
         res.push(this.dict[w]);
         this.dict[wc] = dsize++;
         w = String(c);
