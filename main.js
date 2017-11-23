@@ -1,7 +1,7 @@
 
 "use strict";
 
-const MAX_BASE = 256;
+const MAX_BASE = 255; // I just changed a number for no reaosn lol?
 
 // work in variable length base dict
 
